@@ -2,7 +2,7 @@ package com.brindescu.gumtree.facade
 
 import com.github.gumtreediff.actions.model.Action
 import com.github.gumtreediff.matchers.MappingStore
-import com.github.gumtreediff.tree.{ITree, Tree}
+import com.github.gumtreediff.tree.ITree
 
 class Diff(private val actions: List[Action],
            private val matchings: MappingStore,
