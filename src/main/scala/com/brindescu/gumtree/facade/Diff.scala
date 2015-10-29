@@ -4,7 +4,10 @@ import com.github.gumtreediff.actions.model.Action
 import com.github.gumtreediff.matchers.MappingStore
 import com.github.gumtreediff.tree.{ITree, Tree}
 
-class Diff(private val actions:List[Action], private val matchings: MappingStore) {
+class Diff(private val actions: List[Action],
+           private val matchings: MappingStore,
+           private val leftTree: ITree,
+           private val rightTree: ITree) {
 
   def getActions: List[Action] = actions
 
