@@ -13,9 +13,9 @@ class Diff(private val actions: List[Action],
 
   def getMatch(node: ITree): ITree = {
     if (matchings.hasDst(node))
-      matchings.getDst(node)
-    else if (matchings.hasSrc(node))
       matchings.getSrc(node)
+    else if (matchings.hasSrc(node))
+      matchings.getDst(node)
     else
       null
   }
