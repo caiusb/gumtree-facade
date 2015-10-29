@@ -19,4 +19,8 @@ class Diff(private val actions: List[Action],
     else
       null
   }
+
+  def getLeftTree(): ITree = leftTree
+
+  def getRightTree(): ITree = rightTree
 }
