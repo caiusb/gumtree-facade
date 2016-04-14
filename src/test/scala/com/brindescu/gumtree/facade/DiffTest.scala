@@ -18,6 +18,11 @@ class DiffTest extends FlatSpec with Matchers {
     processTree(diff.getRightTree)
   }
 
+  it should "not match a deleted node" in {
+    val diff = getDiff("public class A{public void m(){}}", "public class A{}")
+    val tree = diff.getLeftTree()
+  }
+
   private def processTree(n: ITree): Any = {
     val matchedNode = diff.getMatch(n)
     assertNodeEquality(n, matchedNode)
