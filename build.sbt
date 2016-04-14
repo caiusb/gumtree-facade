@@ -11,9 +11,12 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 
+crossScalaVersions := Seq("2.10.6", "2.11.7")
+
 lazy val root = (project in file(".")).
   settings(
     name := "gumtree-facade",
+    organization := "com.brindescu",
     version := "0.1"
   )
 
