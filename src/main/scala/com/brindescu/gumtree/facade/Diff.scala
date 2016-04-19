@@ -9,6 +9,9 @@ class Diff(private val actions: List[Action],
            private val leftTree: ITree,
            private val rightTree: ITree) {
 
+	// Workaround. GumTree gives the right (dst) tree a fake root. I'm also doing this for the left (src) tree, just in case
+	leftTree.setParent(null)
+	rightTree.setParent(null)
 
 	def getActions: List[Action] = actions
 
