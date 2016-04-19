@@ -2,8 +2,10 @@ package com.brindescu.gumtree.facade
 
 import com.brindescu.gumtree.facade.ASTDiff._
 import com.github.gumtreediff.tree.ITree
+import org.eclipse.jdt.core.dom.MethodDeclaration
 import org.scalatest.{FlatSpec, Matchers}
 
+import scala.None
 import scala.collection.JavaConversions._
 
 class DiffTest extends FlatSpec with Matchers {
@@ -21,6 +23,9 @@ class DiffTest extends FlatSpec with Matchers {
   it should "not match a deleted node" in {
     val diff = getDiff("public class A{public void m(){}}", "public class A{}")
     val tree = diff.getLeftTree()
+    val method = tree.getChild(0).getChild(2)
+    ASTDiff.getASTNode(method) shouldBe a [MethodDeclaration]
+    diff.getMatch(method) should be (None)
   }
 
   private def processTree(n: ITree): Any = {
