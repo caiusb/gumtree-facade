@@ -14,7 +14,15 @@ object ASTDiff {
 
   def getDiff(a: String, b:String): Diff = {
     val aTree = JDTGenerator.generateFromString(a).getRoot()
+    getDiff(aTree, b)
+  }
+
+  def getDiff(aTree: ITree, b:String): Diff = {
     val bTree = JDTGenerator.generateFromString(b).getRoot()
+    getDiff(aTree, bTree)
+  }
+
+  def getDiff(aTree: ITree, bTree: ITree): Diff = {
     val matcher = Matchers.getInstance().getMatcher(aTree, bTree)
     matcher.`match`()
     val gen = new ActionGenerator(aTree, bTree, matcher.getMappings)
