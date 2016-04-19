@@ -9,18 +9,19 @@ class Diff(private val actions: List[Action],
            private val leftTree: ITree,
            private val rightTree: ITree) {
 
-  def getActions: List[Action] = actions
 
-  def getMatch(node: ITree): Option[ITree] = {
-    if (matchings.hasDst(node))
-      Some(matchings.getSrc(node))
-    else if (matchings.hasSrc(node))
-      Some(matchings.getDst(node))
-    else
-      None
-  }
+	def getActions: List[Action] = actions
 
-  def getLeftTree(): ITree = leftTree
+	def getMatch(node: ITree): Option[ITree] = {
+		if (matchings.hasDst(node))
+			Some(matchings.getSrc(node))
+		else if (matchings.hasSrc(node))
+			Some(matchings.getDst(node))
+		else
+			None
+	}
 
-  def getRightTree(): ITree = rightTree
+	def getLeftTree(): ITree = leftTree
+
+	def getRightTree(): ITree = rightTree
 }
