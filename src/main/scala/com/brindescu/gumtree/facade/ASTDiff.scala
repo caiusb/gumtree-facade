@@ -22,6 +22,11 @@ object ASTDiff {
     getDiff(aTree, bTree)
   }
 
+  def getDiff(a: String, bTree: ITree): Diff = {
+    val aTree = JDTGenerator.generateFromString(a).getRoot()
+    getDiff(aTree, bTree)
+  }
+
   def getDiff(aTree: ITree, bTree: ITree): Diff = {
     val matcher = Matchers.getInstance().getMatcher(aTree, bTree)
     matcher.`match`()
