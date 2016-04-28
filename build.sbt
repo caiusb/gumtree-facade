@@ -26,3 +26,8 @@ assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
   case x => MergeStrategy.first
 }
+
+publishTo := {
+  val prefix = if (isSnapshot.value) "snapshots" else "releases"
+  Some("Personal" at "s3://"+prefix+".ivy.brindescu.com")
+}
