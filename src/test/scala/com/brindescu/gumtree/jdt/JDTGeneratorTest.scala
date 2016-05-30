@@ -21,7 +21,7 @@ class JDTGeneratorTest extends FlatSpec with Matchers {
       val astNode = node.getMetadata("CONTAINED")
       astNode should not be null
       astNode shouldBe an [ASTNode]
-      asScalaBuffer(node.getChildren).foreach(n => processNode(n))
+      node.getChildren.foreach(n => processNode(n))
     }
     processNode(tree)
   }

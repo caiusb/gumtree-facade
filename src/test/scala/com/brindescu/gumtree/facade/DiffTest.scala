@@ -31,7 +31,7 @@ class DiffTest extends FlatSpec with Matchers {
   private def processTree(n: ITree): Any = {
     val matchedNode = diff.getMatch(n)
     assertNodeEquality(n, matchedNode.get)
-    asScalaBuffer(n.getChildren).foreach(n => processTree(n))
+    n.getChildren.foreach(n => processTree(n))
   }
 
   private def assertNodeEquality(a: ITree, b: ITree): Unit = {
