@@ -2,7 +2,7 @@ package com.brindescu.gumtree.facade
 
 import com.github.gumtreediff.tree.ITree
 
-class Gumtree {
+object Gumtree {
 
 	implicit def wrapTree(t: ITree) = new RichTree(t)
 }
