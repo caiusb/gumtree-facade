@@ -6,7 +6,7 @@ import com.github.gumtreediff.matchers.Matchers
 import com.github.gumtreediff.tree.ITree
 import org.eclipse.jdt.core.dom.ASTNode
 
-import scala.collection.JavaConversions
+import scala.collection.JavaConversions._
 
 object ASTDiff {
 
@@ -28,7 +28,7 @@ object ASTDiff {
     val matcher = Matchers.getInstance().getMatcher(aTree, bTree)
     matcher.`match`()
     val gen = new ActionGenerator(aTree, bTree, matcher.getMappings)
-    val actions = JavaConversions.asScalaBuffer(gen.generate()).toList
+    val actions = gen.generate().toList
     new Diff(actions, matcher.getMappings, aTree, bTree)
   }
 
