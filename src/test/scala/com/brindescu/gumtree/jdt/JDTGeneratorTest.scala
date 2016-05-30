@@ -6,6 +6,8 @@ import org.scalatest.{Matchers, FlatSpec}
 
 import scala.collection.JavaConversions._
 
+import com.brindescu.gumtree.facade.Gumtree._
+
 /**
  * Created by caius on 10/28/15.
  */
@@ -18,7 +20,7 @@ class JDTGeneratorTest extends FlatSpec with Matchers {
   it should "have metadata for all nodes" in {
     val tree = JDTGenerator.generateFromString("public class A").getRoot
     def processNode(node: ITree): Any = {
-      val astNode = node.getMetadata("CONTAINED")
+      val astNode = node.getNode
       astNode should not be null
       astNode shouldBe an [ASTNode]
       node.getChildren.foreach(n => processNode(n))

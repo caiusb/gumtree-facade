@@ -1,11 +1,11 @@
 package com.brindescu.gumtree.facade
 
 import com.brindescu.gumtree.facade.ASTDiff._
+import com.brindescu.gumtree.facade.Gumtree._
 import com.github.gumtreediff.tree.ITree
 import org.eclipse.jdt.core.dom.MethodDeclaration
 import org.scalatest.{FlatSpec, Matchers}
 
-import scala.None
 import scala.collection.JavaConversions._
 
 class DiffTest extends FlatSpec with Matchers {
@@ -24,7 +24,7 @@ class DiffTest extends FlatSpec with Matchers {
     val diff = getDiff("public class A{public void m(){}}", "public class A{}")
     val tree = diff.getLeftTree()
     val method = tree.getChild(0).getChild(2)
-    ASTDiff.getASTNode(method) shouldBe a [MethodDeclaration]
+    method.getNode shouldBe a [MethodDeclaration]
     diff.getMatch(method) should be (None)
   }
 
@@ -35,9 +35,9 @@ class DiffTest extends FlatSpec with Matchers {
   }
 
   private def assertNodeEquality(a: ITree, b: ITree): Unit = {
-    getASTNode(b).getClass should equal(getASTNode(a).getClass)
-    getASTNode(b).getNodeType should equal(getASTNode(a).getNodeType)
-    getASTNode(b).getStartPosition should equal(getASTNode(a).getStartPosition)
-    getASTNode(b).getLength should equal(getASTNode(a).getLength)
+    b.getNode.getClass should equal(a.getNode.getClass)
+    b.getNode.getNodeType should equal(a.getNode.getNodeType)
+    b.getNode.getStartPosition should equal(a.getNode.getStartPosition)
+    b.getNode.getLength should equal(a.getNode.getLength)
   }
 }
