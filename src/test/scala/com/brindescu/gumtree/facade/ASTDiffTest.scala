@@ -2,9 +2,6 @@ package com.brindescu.gumtree.facade
 
 import org.scalatest.{Matchers, FlatSpec}
 
-/**
- * Created by caius on 10/26/15.
- */
 class ASTDiffTest extends FlatSpec with Matchers {
 
   private val aContent = "public class A{public void m(){}}"

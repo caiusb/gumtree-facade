@@ -8,9 +8,6 @@ import scala.collection.JavaConversions._
 
 import com.brindescu.gumtree.facade.Gumtree._
 
-/**
- * Created by caius on 10/28/15.
- */
 class JDTGeneratorTest extends FlatSpec with Matchers {
 
   it should "not fail" in {
