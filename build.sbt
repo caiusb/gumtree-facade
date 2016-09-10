@@ -17,7 +17,7 @@ lazy val root = (project in file(".")).
   settings(
     name := "gumtree-facade",
     organization := "com.brindescu",
-    version := "0.4-SNAPSHOT"
+    version := "0.4"
   )
 
 lazy val versionReport = TaskKey[String]("version-report")
