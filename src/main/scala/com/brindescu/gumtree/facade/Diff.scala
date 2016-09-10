@@ -4,6 +4,8 @@ import com.github.gumtreediff.actions.model.Action
 import com.github.gumtreediff.matchers.MappingStore
 import com.github.gumtreediff.tree.ITree
 
+import scala.collection.JavaConversions._
+
 class Diff(private val actions: List[Action],
            private val matchings: MappingStore,
            private val leftTree: ITree,
@@ -27,4 +29,7 @@ class Diff(private val actions: List[Action],
 	def getLeftTree(): ITree = leftTree
 
 	def getRightTree(): ITree = rightTree
+
+	def getMatchedNodes(): List[(ITree, ITree)] =
+		matchings.map { m => (m.getFirst, m.getSecond) }.toList
 }
