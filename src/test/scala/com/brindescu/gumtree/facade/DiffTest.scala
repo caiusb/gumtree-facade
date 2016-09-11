@@ -25,7 +25,7 @@ class DiffTest extends FlatSpec with Matchers {
     val diff = getDiff("public class A{public void m(){}}", "public class A{}")
     val tree = diff.getLeftTree()
     val method = tree.getChild(0).getChild(2)
-    method.getASTNode shouldBe a [MethodDeclaration]
+    method.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode shouldBe a [MethodDeclaration]
     diff.getMatch(method) should be (None)
   }
 
@@ -36,9 +36,11 @@ class DiffTest extends FlatSpec with Matchers {
   }
 
   private def assertNodeEquality(a: ITree, b: ITree): Unit = {
-    b.getASTNode.getClass should equal(a.getASTNode.getClass)
-    b.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode.getNodeType should equal(a.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode.getNodeType)
-    b.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode.getStartPosition should equal(a.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode.getStartPosition)
-    b.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode.getLength should equal(a.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode.getLength)
+    val aNode = a.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode()
+    val bNode = b.getASTNode.asInstanceOf[JavaTree].getUnderlyingNode()
+    bNode.getClass should equal(aNode.getClass)
+    bNode.getNodeType should equal(aNode.getNodeType)
+    bNode.getStartPosition should equal(aNode.getStartPosition)
+    bNode.getLength should equal(aNode.getLength)
   }
 }
