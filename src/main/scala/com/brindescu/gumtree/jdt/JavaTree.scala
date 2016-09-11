@@ -9,3 +9,8 @@ class JavaTree(n: ASTNode) extends SuperTree {
 
 	def getUnderlyingNode(): ASTNode = n
 }
+
+
+object JavaTree {
+	def apply(n: ASTNode) = new JavaTree(n)
+}

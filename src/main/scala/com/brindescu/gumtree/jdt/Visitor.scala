@@ -7,7 +7,7 @@ import org.eclipse.jdt.core.dom.ASTNode
 class Visitor extends JdtVisitor {
 
   override def postVisit(node: ASTNode) = {
-    getCurrentParent.setMetadata("CONTAINED", node)
+    getCurrentParent.setMetadata("CONTAINED", JavaTree(node))
     super.postVisit(node)
   }
 

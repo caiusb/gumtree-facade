@@ -28,7 +28,7 @@ class CVisitor extends ASTGenericVisitor(true) {
 	}
 
 	override def genericLeave(n: IASTNode):Int = {
-		stack.pop().setMetadata("CONTAINED", n)
+		stack.pop().setMetadata("CONTAINED", CTree(n))
 		return ASTVisitor.PROCESS_CONTINUE
 	}
 
