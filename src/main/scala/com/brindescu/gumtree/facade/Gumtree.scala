@@ -13,10 +13,10 @@ import Gumtree._
 
 class RichTree(tree: ITree) {
 
-	def getNode = ASTDiff.getASTNode(tree)
+	def getASTNode = tree.getMetadata("CONTAINED")
 }
 
 class RichAction(action: Action) {
 
-	def getASTNode = action.getNode.getNode
+	def getASTNode = action.getNode.getASTNode
 }

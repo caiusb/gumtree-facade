@@ -8,7 +8,7 @@ class ASTDiffTest extends FlatSpec with Matchers {
   private val bContent = "public class A{public void n(){}}"
 
   it should "find the diff" in {
-    val diff = ASTDiff.getDiff(aContent, bContent)
+    val diff = JavaASTDiff.getDiff(aContent, bContent)
     diff.getActions should have size 1
   }
 
