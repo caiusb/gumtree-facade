@@ -9,7 +9,7 @@ object Gumtree {
 	implicit def wrapAction(a: Action) = new RichAction(a)
 }
 
-import Gumtree._
+import com.brindescu.gumtree.facade.Gumtree._
 
 class RichTree(tree: ITree) {
 
