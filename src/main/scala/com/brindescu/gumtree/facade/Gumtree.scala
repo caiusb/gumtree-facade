@@ -11,8 +11,8 @@ object Gumtree {
 
 	implicit def wrapTree(t: ITree) = new RichTree(t)
 	implicit def wrapAction(a: Action) = new RichAction(a)
-	implicit def wrapJavaAST(a: ASTNode): SuperTree = new JavaTree(a)
-	implicit def wrapCAST(a: IASTNode): SuperTree = new CTree(a)
+	implicit def wrapJavaAST(a: ASTNode): JavaTree = new JavaTree(a)
+	implicit def wrapCAST(a: IASTNode): CTree = new CTree(a)
 	implicit def unwrapJavaAST(t: JavaTree) = t.getUnderlyingNode
 	implicit def unwrapCAST(t: CTree) = t.getUnderlyingNode
 }
