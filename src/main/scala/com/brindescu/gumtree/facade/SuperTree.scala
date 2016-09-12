@@ -1,6 +1,6 @@
 package com.brindescu.gumtree.facade
 
-abstract class SuperTree {
+trait SuperTree {
 	def getLineNumber(): Int
 
 	def getParent(): SuperTree
