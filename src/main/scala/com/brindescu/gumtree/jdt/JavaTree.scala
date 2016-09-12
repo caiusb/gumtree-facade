@@ -11,8 +11,9 @@ class JavaTree(n: ASTNode) extends SuperTree {
 		n.getRoot.asInstanceOf[CompilationUnit].getLineNumber(n.getStartPosition)
 
 	override def getSourceRange(): List[Int] = {
-		val s = n.getStartPosition
-		val e = n.getStartPosition + n.getLength
+		val root = n.getRoot.asInstanceOf[CompilationUnit]
+		val s = root.getLineNumber(n.getStartPosition)
+		val e = root.getLineNumber(n.getStartPosition + n.getLength)
 		Range(s, e+1).toList
 	}
 
