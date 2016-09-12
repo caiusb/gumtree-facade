@@ -4,7 +4,7 @@ name := "gumtree-facade"
 
 organization := "com.brindescu"
 
-version := "0.5.2"
+version := "0.5.3"
 
 EclipseKeys.withSource := true
 
