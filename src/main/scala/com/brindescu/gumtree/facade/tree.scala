@@ -1,6 +1,8 @@
 package com.brindescu.gumtree.facade
 
-abstract class SuperTree extends Traversable[SuperTree] {
+import scala.collection.mutable.ListBuffer
+
+abstract class SuperTree {
 	def getLineNumber(): Int
 
 	def getSourceRange(): List[Int]
@@ -9,9 +11,13 @@ abstract class SuperTree extends Traversable[SuperTree] {
 
 	def getChildren(): List[SuperTree]
 
-	override def foreach[U](f: SuperTree => U) = {
-		f(this)
-		getChildren.foreach(f)
+	def getUnderlyingNode(): Any
+
+	def listAllNodes(): List[SuperTree] = {
+		val builder = new ListBuffer[SuperTree]
+		builder.append(this)
+		getChildren.foreach { c => builder.appendAll(c.listAllNodes) }
+		builder.toList
 	}
 }
 
