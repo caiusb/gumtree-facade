@@ -1,5 +1,11 @@
 import sbt._
 
+name := "gumtree-facade"
+
+organization := "com.brindescu"
+
+version := "0.5.2"
+
 EclipseKeys.withSource := true
 
 addCommandAlias("idea", "update-classifiers; update-sbt-classifiers; gen-idea sbt-classifiers")
@@ -12,13 +18,6 @@ libraryDependencies ++= Seq(
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 
 crossScalaVersions := Seq("2.10.6", "2.11.7")
-
-lazy val root = (project in file(".")).
-  settings(
-    name := "gumtree-facade",
-    organization := "com.brindescu",
-    version := "0.5.2"
-  )
 
 lazy val versionReport = TaskKey[String]("version-report")
 
