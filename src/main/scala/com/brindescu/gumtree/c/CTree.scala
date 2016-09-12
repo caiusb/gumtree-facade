@@ -9,8 +9,18 @@ class CTree(n: IASTNode) extends SuperTree {
 		n.getFileLocation.getStartingLineNumber
 
 	def getUnderlyingNode(): IASTNode = n
+
+	override def equals(other: Any): Boolean =
+		other match {
+			case CTree(o) => o == n
+			case o: IASTNode => o == n
+			case _ => false
+		}
+
+	override def hashCode(): Int = n.hashCode()
 }
 
 object CTree {
 	def apply(n: IASTNode) = new CTree(n)
+	def unapply(t: CTree): Option[IASTNode] = Some(t.getUnderlyingNode)
 }

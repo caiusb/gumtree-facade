@@ -8,9 +8,17 @@ class JavaTree(n: ASTNode) extends SuperTree {
 		n.getRoot.asInstanceOf[CompilationUnit].getLineNumber(n.getStartPosition)
 
 	def getUnderlyingNode(): ASTNode = n
+
+	override def equals(other: Any): Boolean =
+		other match {
+			case JavaTree(o) => o == n
+			case o: ASTNode => o == n
+			case _ => false
+		}
 }
 
 
 object JavaTree {
 	def apply(n: ASTNode) = new JavaTree(n)
+	def unapply(t: JavaTree): Option[ASTNode] = Some(t.getUnderlyingNode)
 }
