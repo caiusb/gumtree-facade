@@ -13,8 +13,8 @@ object Gumtree {
 	implicit def wrapAction(a: Action) = new RichAction(a)
 	implicit def wrapJavaAST(a: ASTNode): JavaTree = new JavaTree(a)
 	implicit def wrapCAST(a: IASTNode): CTree = new CTree(a)
-	implicit def unwrapJavaAST(t: JavaTree) = t.getUnderlyingNode
-	implicit def unwrapCAST(t: CTree) = t.getUnderlyingNode
+	implicit def unwrapJavaAST(t: JavaTree) = if (t != null) t.getUnderlyingNode else null
+	implicit def unwrapCAST(t: CTree) = if (t != null) t.getUnderlyingNode else null
 }
 
 import com.brindescu.gumtree.facade.Gumtree._
