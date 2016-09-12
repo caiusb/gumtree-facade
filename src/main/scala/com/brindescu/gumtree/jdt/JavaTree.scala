@@ -1,7 +1,9 @@
 package com.brindescu.gumtree.jdt
 
-import com.brindescu.gumtree.facade.SuperTree
-import org.eclipse.jdt.core.dom.{ASTNode, CompilationUnit}
+import com.brindescu.gumtree.facade.{SuperBlock, SuperMethod, SuperStatement, SuperTree}
+import org.eclipse.jdt.core.dom._
+
+import com.brindescu.jdtfacade.Facade._
 
 class JavaTree(n: ASTNode) extends SuperTree {
 
@@ -11,6 +13,8 @@ class JavaTree(n: ASTNode) extends SuperTree {
 	override def getParent(): SuperTree =
 		JavaTree(n.getParent)
 
+	override def getChildren(): SuperTree = ???
+
 	def getUnderlyingNode(): ASTNode = n
 
 	override def equals(other: Any): Boolean =
@@ -19,10 +23,20 @@ class JavaTree(n: ASTNode) extends SuperTree {
 			case o: ASTNode => o == n
 			case _ => false
 		}
-}
 
+	override def hashCode() = n.hashCode
+}
 
 object JavaTree {
-	def apply(n: ASTNode) = new JavaTree(n)
+	def apply(n: ASTNode): JavaTree = n match {
+		case b: Block => new JavaBlock(b)
+		case s: Statement => new JavaStatement(s)
+		case m: MethodDeclaration => new JavaMethod(m)
+		case _ => new JavaTree(n)
+	}
 	def unapply(t: JavaTree): Option[ASTNode] = Some(t.getUnderlyingNode)
 }
+
+class JavaStatement(s: Statement) extends JavaTree(s) with SuperStatement
+class JavaBlock(b: Block) extends JavaTree(b) with SuperBlock
+class JavaMethod(m: MethodDeclaration) extends JavaTree(m) with SuperMethod
