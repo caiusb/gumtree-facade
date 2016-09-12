@@ -19,8 +19,24 @@ abstract class SuperTree {
 		getChildren.foreach { c => builder.appendAll(c.listAllNodes) }
 		builder.toList
 	}
+
+	def getEnclosingClass(): Option[SuperTree]
+
+	def getEnclosingMethod(): Option[SuperTree]
+
+	def getNodeType(): String
+}
+
+trait Named {
+	def getIdentifier(): String
 }
 
 trait SuperStatement extends SuperTree
-trait SuperBlock extends SuperTree
-trait SuperMethod extends SuperTree
+
+trait SuperBlock extends SuperTree {
+	def getBlockInfo(): String
+}
+
+trait SuperMethod extends SuperTree with Named
+
+trait SuperClass extends SuperTree with Named
