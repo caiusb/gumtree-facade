@@ -4,7 +4,7 @@ name := "gumtree-facade"
 
 organization := "com.brindescu"
 
-version := "0.5.6"
+version := "0.6-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
