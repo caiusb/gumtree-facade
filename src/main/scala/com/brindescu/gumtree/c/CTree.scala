@@ -11,7 +11,7 @@ class CTree(n: IASTNode) extends SuperTree {
 	override def getParent(): SuperTree =
 		CTree(n.getParent)
 
-	override def getChildren(): SuperTree = ???
+	override def getChildren(): List[SuperTree] = ???
 
 	def getUnderlyingNode(): IASTNode = n
 

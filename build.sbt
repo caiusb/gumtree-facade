@@ -16,7 +16,7 @@ libraryDependencies ++= Seq(
   "com.github.gumtreediff" % "gumtree-all" % "2.0.0",
   "com.github.scopt" %% "scopt" % "3.3.0",
   "com.brindescu" %% "cdt-facade" % "0.1",
-  "com.brindescu" %% "jdtfacade" % "0.7"
+  "com.brindescu" %% "jdtfacade" % "0.8"
 )
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"

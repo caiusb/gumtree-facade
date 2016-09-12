@@ -13,7 +13,8 @@ class JavaTree(n: ASTNode) extends SuperTree {
 	override def getParent(): SuperTree =
 		JavaTree(n.getParent)
 
-	override def getChildren(): SuperTree = ???
+	override def getChildren(): List[SuperTree] =
+		n.getChildren.map{JavaTree(_)}
 
 	def getUnderlyingNode(): ASTNode = n
 
