@@ -7,6 +7,8 @@ class CTree(n: IASTNode) extends SuperTree {
 
 	override def getLineNumber(): Int =
 		n.getFileLocation.getStartingLineNumber
+
+	def getUnderlyingNode(): IASTNode = n
 }
 
 object CTree {

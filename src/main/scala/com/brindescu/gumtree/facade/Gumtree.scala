@@ -11,18 +11,20 @@ object Gumtree {
 
 	implicit def wrapTree(t: ITree) = new RichTree(t)
 	implicit def wrapAction(a: Action) = new RichAction(a)
-	implicit def wrapJavaAST(a: ASTNode) = new JavaTree(a)
-	implicit def wrapCAST(a: IASTNode) = new CTree(a)
+	implicit def wrapJavaAST(a: ASTNode): SuperTree = new JavaTree(a)
+	implicit def wrapCAST(a: IASTNode): SuperTree = new CTree(a)
+	implicit def unwrapJavaAST(t: JavaTree) = t.getUnderlyingNode
+	implicit def unwrapCAST(t: CTree) = t.getUnderlyingNode
 }
 
 import com.brindescu.gumtree.facade.Gumtree._
 
 class RichTree(tree: ITree) {
 
-	def getASTNode = tree.getMetadata("CONTAINED")
+	def getASTNode: SuperTree = tree.getMetadata("CONTAINED").asInstanceOf[SuperTree]
 }
 
 class RichAction(action: Action) {
 
-	def getASTNode = action.getNode.getASTNode
+	def getASTNode: SuperTree = action.getNode.getASTNode
 }
