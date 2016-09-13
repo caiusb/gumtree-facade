@@ -11,8 +11,11 @@ class CTree(n: IASTNode) extends SuperTree {
 	override def getSourceRange(): List[Int] =
 		Range(n.getFileLocation.getStartingLineNumber, n.getFileLocation.getEndingLineNumber+1).toList
 
-	override def getParent(): SuperTree =
-		CTree(n.getParent)
+	override def getParent(): Option[SuperTree] =
+		n.getParent match {
+			case x if x != null => Some(CTree(x))
+			case _ => None
+		}
 
 	override def getChildren(): List[SuperTree] = n.getChildren.map { CTree(_) }.toList
 
@@ -24,7 +27,10 @@ class CTree(n: IASTNode) extends SuperTree {
 
 	override def getEnclosingMethod(): Option[SuperTree] = n match {
 		case f: IASTFunctionDefinition => Some(CTree(f))
-		case n: IASTNode if getParent() != null => Some(CTree(n))
+		case n: IASTNode => getParent() match {
+			case Some(x) => x.getEnclosingMethod()
+			case None => None
+		}
 		case _ => None
 	}
 

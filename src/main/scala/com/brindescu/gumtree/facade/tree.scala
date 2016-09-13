@@ -7,7 +7,7 @@ abstract class SuperTree {
 
 	def getSourceRange(): List[Int]
 
-	def getParent(): SuperTree
+	def getParent(): Option[SuperTree]
 
 	def getChildren(): List[SuperTree]
 

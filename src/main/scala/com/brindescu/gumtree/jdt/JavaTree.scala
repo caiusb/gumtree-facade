@@ -16,8 +16,11 @@ class JavaTree(n: ASTNode) extends SuperTree {
 		Range(s, e+1).toList
 	}
 
-	override def getParent(): SuperTree =
-		JavaTree(n.getParent)
+	override def getParent(): Option[SuperTree] =
+		n.getParent match {
+			case x if x != null => Some(JavaTree(x))
+			case _ => None
+		}
 
 	override def getChildren(): List[SuperTree] =
 		n.getChildren.map{JavaTree(_)}
@@ -26,8 +29,11 @@ class JavaTree(n: ASTNode) extends SuperTree {
 
 	override def getEnclosingClass(): Option[SuperTree] = {
 		n match {
-			case x : TypeDeclaration => Some(JavaTree(x))
-			case x : ASTNode if getParent() != null => getParent.getEnclosingClass
+			case x: TypeDeclaration => Some(JavaTree(x))
+			case x: ASTNode => getParent match {
+				case Some(x) => x.getEnclosingClass
+				case None => None
+			}
 			case _ => None
 		}
 	}
@@ -35,7 +41,10 @@ class JavaTree(n: ASTNode) extends SuperTree {
 	override def getEnclosingMethod(): Option[SuperTree] = {
 		n match {
 			case x : MethodDeclaration => Some(JavaTree(x))
-			case x : ASTNode if getParent() != null => getParent.getEnclosingMethod
+			case x : ASTNode => getParent match {
+				case Some(x) => x.getEnclosingMethod
+				case None => None
+			}
 			case _ => None
 		}
 	}
