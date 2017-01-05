@@ -6,24 +6,24 @@ organization := "com.brindescu"
 
 version := "0.7"
 
-scalaVersion := "2.11.7"
-
 EclipseKeys.withSource := true
 
 addCommandAlias("idea", "update-classifiers; update-sbt-classifiers; gen-idea sbt-classifiers")
 
 libraryDependencies ++= Seq(
   "com.github.gumtreediff" % "gumtree-all" % "2.0.0",
-  "com.github.scopt" %% "scopt" % "3.3.0",
+  "com.github.scopt" %% "scopt" % "3.5.+",
   "com.brindescu" %% "cdt-facade" % "0.1",
   "com.brindescu" %% "jdtfacade" % "0.8"
 )
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.+" % "test"
 
-crossScalaVersions := Seq("2.10.6", "2.11.7")
+crossScalaVersions := Seq("2.10.6", "2.11.7", "2.12.0")
 
-resolvers += "Me" at "http://releases.ivy.brindescu.com"
+resolvers ++= Seq("Me" at "http://releases.ivy.brindescu.com",
+  Resolver.url("scoverage-bintray", url("https://dl.bintray.com/sksamuel/sbt-plugins/"))(Resolver.ivyStylePatterns)
+)
 
 lazy val versionReport = TaskKey[String]("version-report")
 
