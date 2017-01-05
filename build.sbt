@@ -10,6 +10,8 @@ EclipseKeys.withSource := true
 
 addCommandAlias("idea", "update-classifiers; update-sbt-classifiers; gen-idea sbt-classifiers")
 
+scalaVersion := "2.12.0"
+
 libraryDependencies ++= Seq(
   "com.github.gumtreediff" % "gumtree-all" % "2.0.0",
   "com.github.scopt" %% "scopt" % "3.5.+",
